@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">WhatStore</string>
+    <string name="action_settings">Share App</string>
+    <string name="title_activity_video_view_activty">VideoViewActivty</string>
+    <string name="title_activity_image_view">ImageViewActivity</string>
+    <string name="title_activity_asking_permission">AskingPermission</string>
+</resources>
