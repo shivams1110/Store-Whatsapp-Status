@@ -1,4 +1,4 @@
-package com.ssalphax.whatstore;
+package com.devlopertechie.whatstore;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+
+import static com.devlopertechie.whatstore.Constants.KEY_IMAGE_URL;
 
 public class ImageViewActivity extends AppCompatActivity {
 
@@ -20,7 +22,7 @@ public class ImageViewActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        String imgUrl = this.getIntent().getStringExtra("imageUrl");
+        String imgUrl = this.getIntent().getStringExtra(KEY_IMAGE_URL);
         imgMain = findViewById(R.id.imageMain);
         imgBack = findViewById(R.id.img_back_image);
 
@@ -32,8 +34,5 @@ public class ImageViewActivity extends AppCompatActivity {
                 finish();
             }
         });
-
-
     }
-
 }

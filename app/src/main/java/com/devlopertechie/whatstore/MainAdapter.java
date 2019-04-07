@@ -1,4 +1,4 @@
-package com.ssalphax.whatstore;
+package com.devlopertechie.whatstore;
 
 import android.content.Context;
 import android.content.Intent;
@@ -20,7 +20,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.ArrayList;
+import java.util.List;
+
+import static com.devlopertechie.whatstore.Constants.DIR_NAME;
+import static com.devlopertechie.whatstore.Constants.KEY_IMAGE_URL;
+import static com.devlopertechie.whatstore.Constants.KEY_VIDEO_URL;
 
 /**
  * Created by ssalphax on 3/25/2018.
@@ -28,10 +32,11 @@ import java.util.ArrayList;
 
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
+    private static final String MP_4 = "mp4";
     private Context context;
-    private ArrayList<FileDetail> fileList;
+    private List<FileDetail> fileList;
 
-    public MainAdapter(Context context, ArrayList<FileDetail> fileList) {
+    public MainAdapter(Context context, List<FileDetail> fileList) {
         this.context= context;
         this.fileList = fileList;
     }
@@ -48,7 +53,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
         final FileDetail f = fileList.get(position);
 
-        if (!f.getType().equals("mp4")){
+        if (!f.getType().equals(MP_4)){
             holder.imgPlay.setVisibility(View.GONE);
         }else {
             holder.imgPlay.setVisibility(View.VISIBLE);
@@ -57,13 +62,13 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
         holder.imgMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (f.getType().equals("mp4")){
+                if (f.getType().equals(MP_4)){
                     Intent intent = new Intent(context, VideoViewActivty.class);
-                    intent.putExtra("videoUrl", f.getFileUri().getAbsolutePath());
+                    intent.putExtra(KEY_VIDEO_URL, f.getFileUri().getAbsolutePath());
                     context.startActivity(intent);
                 }else {
                     Intent intent = new Intent(context, ImageViewActivity.class);
-                    intent.putExtra("imageUrl", f.getFileUri().getAbsolutePath());
+                    intent.putExtra(KEY_IMAGE_URL, f.getFileUri().getAbsolutePath());
                     context.startActivity(intent);
                 }
             }
@@ -75,37 +80,30 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
             @Override
             public void onClick(View v) {
 
-                if (f.getType().equals("mp4")){
+                if (f.getType().equals(MP_4)){
                     shareVideo(f.getFileUri());
                 }else {
                     shareImage(f.getFileUri());
                 }
-
             }
         });
-
 
         holder.linearSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 saveFile(f.getFileUri());
-
             }
         });
 
     }
 
     private void saveFile(File fileUri) {
-
-        File file = new File(Environment.getExternalStorageDirectory(),"WhatStore");
-
+        File file = new File(Environment.getExternalStorageDirectory(),DIR_NAME);
         if (!file.exists()){
             file.mkdirs();
         }
 
         file = new File(file +"/"+fileUri.getName());
-
 
         try {
             copy(fileUri, file);
@@ -142,7 +140,6 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
         intent.setType("image/jpeg");
         intent.putExtra(Intent.EXTRA_STREAM, Uri.parse(fileUri.getAbsolutePath()));
         context.startActivity(Intent.createChooser(intent, "Share Image"));
-//        context.startActivity(intent);
     }
 
     @Override
@@ -159,12 +156,10 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
         public ViewHolder(View itemView) {
             super(itemView);
-
             imgMain = (ImageView) itemView.findViewById(R.id.imgMain);
             imgPlay = (ImageView) itemView.findViewById(R.id.img_play);
             linearSave = (LinearLayout) itemView.findViewById(R.id.linearSave);
             linearShare = (LinearLayout) itemView.findViewById(R.id.linearShare);
-
         }
     }
 }

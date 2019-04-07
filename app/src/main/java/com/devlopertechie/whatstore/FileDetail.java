@@ -1,4 +1,4 @@
-package com.ssalphax.whatstore;
+package com.devlopertechie.whatstore;
 
 import java.io.File;
 
@@ -36,11 +36,4 @@ public class FileDetail {
         this.type = type;
     }
 
-//    public Uri getFileUri() {
-//        return fileUri;
-//    }
-//
-//    public void setFileUri(Uri fileUri) {
-//        this.fileUri = fileUri;
-//    }
 }

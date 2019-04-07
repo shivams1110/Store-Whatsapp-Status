@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 26
     defaultConfig {
-        applicationId "com.ssalphax.whatstore"
+        applicationId "com.devlopertechie.whatstore"
         minSdkVersion 15
         targetSdkVersion 26
         versionCode 3

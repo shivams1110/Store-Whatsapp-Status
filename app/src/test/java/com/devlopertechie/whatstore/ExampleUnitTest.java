@@ -1,4 +1,4 @@
-package com.ssalphax.whatstore;
+package com.devlopertechie.whatstore;
 
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package com.ssalphax.whatstore;
+package com.devlopertechie.whatstore;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
