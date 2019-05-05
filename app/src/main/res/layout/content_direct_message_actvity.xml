@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusableInTouchMode="true"
+    android:background="@drawable/bg_gradient"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".DirectMessageActvity"
+    tools:showIn="@layout/activity_direct_message_actvity">
+
+    <LinearLayout
+        android:layout_marginTop="48dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/text_discription_on_direct_msg"
+            android:textColor="#817474"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/llMobileNumber"
+        android:layout_margin="@dimen/size_10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/llCountryCode"
+            android:background="@drawable/border_bg_empty"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:padding="8dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <ImageView
+                android:id="@+id/imgFlag"
+                android:layout_width="28dp"
+                android:layout_height="20dp"
+                tools:background="@color/colorAccent" />
+
+            <TextView
+                android:id="@+id/txtCountryCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_10dp"
+                android:layout_marginLeft="@dimen/size_10dp"
+                tools:text="+91"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/edt_mobileNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_10dp"
+            android:layout_marginLeft="@dimen/size_10dp"
+            android:inputType="phone"
+            android:importantForAutofill="no"
+            android:hint="@string/mobile_number" />
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/btnStartChat"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="12dp"
+        android:background="@drawable/round_corner_bg_solid"
+        android:text="@string/start_chat"
+        android:textAllCaps="false"
+        android:textColor="@color/white" />
+
+</RelativeLayout>

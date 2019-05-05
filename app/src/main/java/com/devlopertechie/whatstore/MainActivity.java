@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.devlopertechie.whatstore.Constants.STATUS_FOLDER;
+import static com.devlopertechie.whatstore.Utils.hasPermissions;
 import static com.devlopertechie.whatstore.Utils.loadmp3;
 
 public class MainActivity extends AppCompatActivity {
@@ -44,13 +45,29 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        swipeRefreshLayout = findViewById(R.id.swipe);
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_main);
+        RecyclerView recyclerView = findViewById(R.id.recycler_main);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        swipeRefreshLayout = findViewById(R.id.swipe);
         adapter = new MainAdapter(this, fileList_);
-
         recyclerView.setAdapter(adapter);
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+
+        getStatusResultFromSD();
+        swipeRefreshListener();
+
+    }
+
+    private void swipeRefreshListener() {
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getFileFromWhat();
+                Toast.makeText(MainActivity.this, "Refresh Success", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void getStatusResultFromSD() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             // only for gingerbread and newer versions
             if (checkWriteExternalPermission()) {
                 getFileFromWhat();
@@ -60,15 +77,6 @@ public class MainActivity extends AppCompatActivity {
         } else {
             getFileFromWhat();
         }
-
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                getFileFromWhat();
-                Toast.makeText(MainActivity.this, "Refresh Success", Toast.LENGTH_SHORT).show();
-            }
-        });
-
     }
 
     private void showAlertForPermision() {
@@ -132,17 +140,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public static boolean hasPermissions(Context context, String... permissions) {
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && context != null && permissions != null) {
-            for (String permission : permissions) {
-                if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-
     private void getFileFromWhat() {
 
         fileList_.clear();
@@ -176,7 +173,17 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
 
+        if (id == R.id.action_direct_msg) {
+            openDirectMsgActivity();
+            return true;
+        }
+
         return super.onOptionsItemSelected(item);
+    }
+
+    private void openDirectMsgActivity() {
+        Intent intent = new Intent(MainActivity.this, DirectMessageActvity.class);
+        startActivity(intent);
     }
 
     private void shareApp() {

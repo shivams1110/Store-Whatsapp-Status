@@ -4,4 +4,9 @@
     <string name="title_activity_video_view_activty">VideoViewActivty</string>
     <string name="title_activity_image_view">ImageViewActivity</string>
     <string name="title_activity_asking_permission">AskingPermission</string>
+    <string name="title_activity_direct_message_actvity">Direct Message</string>
+    <string name="text_discription_on_direct_msg">Send Message on WhatsApp\nwithout save number</string>
+    <string name="start_chat">Start Chat</string>
+    <string name="direct_message">Direct Message</string>
+    <string name="mobile_number">Mobile Number</string>
 </resources>
