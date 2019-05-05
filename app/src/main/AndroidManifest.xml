@@ -13,7 +13,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.devlopertechie.whatstore.MainActivity"
+            android:name=".DirectMessageActvity"
+            android:label="@string/title_activity_direct_message_actvity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -23,11 +27,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.devlopertechie.whatstore.VideoViewActivty"
+            android:name=".VideoViewActivty"
             android:label="@string/title_activity_video_view_activty"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.devlopertechie.whatstore.ImageViewActivity"
+            android:name=".ImageViewActivity"
             android:label="@string/title_activity_image_view"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>

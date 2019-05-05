@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:id="@+id/ll_bottom_sheet"
+    app:behavior_peekHeight="200dp"
+    android:background="@color/white"
+    app:behavior_hideable="true"
+    app:layout_behavior="@string/bottom_sheet_behavior"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_country_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

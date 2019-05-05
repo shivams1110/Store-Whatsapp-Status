@@ -1,8 +1,16 @@
 package com.devlopertechie.whatstore;
 
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
+import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AlertDialog;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -74,5 +82,32 @@ public class Utils {
             }
         }
         return fileList_;
+    }
+
+    public static boolean hasPermissions(Context context, String... permissions) {
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && context != null && permissions != null) {
+            for (String permission : permissions) {
+                if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public static String readJSONFromAsset(Context context, String fileName) {
+        String json = null;
+        try {
+            InputStream is = context.getAssets().open(fileName);
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            json = new String(buffer, "UTF-8");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+        return json;
     }
 }
